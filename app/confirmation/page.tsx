@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Confetti from "react-confetti";
 
+
 export default function ConfirmationPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
