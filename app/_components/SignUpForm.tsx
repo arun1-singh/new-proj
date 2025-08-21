@@ -90,6 +90,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ selectedPlan }) => {
     formData.confirmPassword &&
     formData.acceptTerms;
 
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setTouched({
@@ -104,13 +105,13 @@ const SignupForm: React.FC<SignupFormProps> = ({ selectedPlan }) => {
       setIsSubmitting(true);
       setTimeout(() => {
         setIsSubmitting(false);
-        router.push(
-          `/confirmation?fullName=${encodeURIComponent(
-            formData.fullName
-          )}&email=${encodeURIComponent(
-            formData.email
-          )}&selectedPlan=${encodeURIComponent(selectedPlan)}`
-        );
+
+        
+        localStorage.setItem("fullName", formData.fullName);
+        localStorage.setItem("selectedPlan", selectedPlan);
+
+        
+        router.push("/confirmation");
       }, 2000);
     }
   };
@@ -130,10 +131,8 @@ const SignupForm: React.FC<SignupFormProps> = ({ selectedPlan }) => {
     <div
       className={`relative min-h-screen flex items-center justify-center px-6 py-12 overflow-hidden`}
     >
-    
       <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 animate-gradient-x opacity-70 dark:opacity-50"></div>
 
-      
       <button
         onClick={toggleTheme}
         className="absolute top-6 right-6 p-3 rounded-full shadow-md bg-white/40 dark:bg-black/40 backdrop-blur-lg"
@@ -141,7 +140,6 @@ const SignupForm: React.FC<SignupFormProps> = ({ selectedPlan }) => {
         {isDark ? <Sun className="w-5 h-5 text-yellow-300" /> : <Moon className="w-5 h-5 text-blue-600" />}
       </button>
 
-      
       <motion.form
         onSubmit={handleSubmit}
         initial={{ opacity: 0, y: 40 }}
@@ -156,7 +154,6 @@ const SignupForm: React.FC<SignupFormProps> = ({ selectedPlan }) => {
           You’ve selected the <span className="font-semibold">{selectedPlan}</span> plan
         </p>
 
-        
         <div className="relative">
           <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-indigo-400" />
           <input
@@ -170,7 +167,6 @@ const SignupForm: React.FC<SignupFormProps> = ({ selectedPlan }) => {
           />
         </div>
 
-        
         <div className="relative">
           <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-indigo-400" />
           <input
@@ -184,7 +180,6 @@ const SignupForm: React.FC<SignupFormProps> = ({ selectedPlan }) => {
           />
         </div>
 
-        
         <div className="relative">
           <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-indigo-400" />
           <input
@@ -205,7 +200,6 @@ const SignupForm: React.FC<SignupFormProps> = ({ selectedPlan }) => {
           </button>
         </div>
 
-        
         <div className="relative">
           <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-indigo-400" />
           <input
@@ -226,7 +220,6 @@ const SignupForm: React.FC<SignupFormProps> = ({ selectedPlan }) => {
           </button>
         </div>
 
-        
         <motion.div
           whileHover={{ scale: 1.02 }}
           className="flex items-center space-x-2"
@@ -244,7 +237,6 @@ const SignupForm: React.FC<SignupFormProps> = ({ selectedPlan }) => {
           </label>
         </motion.div>
 
-        
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
