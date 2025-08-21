@@ -1,10 +1,8 @@
-import { Suspense } from "react";
-import ConfirmationClient from "./ConfirmationClient";
+// app/signup/page.tsx
+import ConfirmationPage from "./ConfirmationClient";
+
+export const dynamic = "force-dynamic"; // ✅ important
 
 export default function Page() {
-  return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading confirmation...</div>}>
-      <ConfirmationClient />
-    </Suspense>
-  );
+  return <ConfirmationPage />;
 }
